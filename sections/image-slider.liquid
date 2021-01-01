@@ -1,0 +1,30 @@
+
+<div class="image-slider">
+  <section class="lazy slider">
+    <div>
+      <img src="{{ section.settings.img-1 | img_url: '1024x1024' }}" alt="{{ section.settings.img }}">
+    </div>
+    <div>
+      <img src="{{ section.settings.img-2 | img_url: '1024x1024' }}" alt="{{ section.settings.img }}">
+    </div>
+  </section>
+</div>
+
+
+{% schema %}
+{
+  "name": "Image slider",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "img-1",
+      "label": "Image-1"
+    },
+    {
+      "type": "image_picker",
+      "id": "img-2",
+      "label": "Image-2"
+    } 
+  ]
+}
+{% endschema %}

@@ -1,0 +1,30 @@
+<style>
+  .topbar {
+    background:{{section.settings.topbar_color}};
+  }
+  
+</style>
+<div class="topbar">
+  <div class="container">
+    <div class="text-wrapper">
+      {{section.settings.top_bar_text}}
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Topbar text",
+  "settings": [
+    {
+      "type": "color",
+      "id": "topbar_color",
+      "label": "Background"
+    },
+    {
+      "type": "richtext",
+      "id": "top_bar_text",
+      "label": "Topbar text"
+    }
+  ]
+}
+{% endschema %}

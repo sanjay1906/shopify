@@ -1,0 +1,133 @@
+<div class="navbar-wrapper">
+  <div class="flex-view stretch space">
+    <div class="logo-side side">
+      <div class="site-logo">
+        <a href="/">
+           <img src="{{ section.settings.img | img_url: 'master' }}" alt="{{ section.settings.img }}">
+        </a>
+      </div>
+    </div>
+    <div class="menu-side side">
+      <nav role="navigation" class="main-menu text-center">
+        <ul class="main-menu-ul">
+          {%- for link in linklists.main-menu.links -%}
+            <li class="main-menu-li">
+              <a class="main-menu-a" href="{{ link.url }}">
+                {{link.title}}
+              </a>
+              <div class="child-menu mega-menu full-mega">
+                <div class="flex-view stretch">
+                  <div class="flex-view top left-side">
+                    {%- if link.links != blank -%}
+                        {%- for child_link in link.links -%}
+                        <div class="single-list divide-four">
+                        <a id='hello' class="head" href="{{ child_link.url }}" {% if child_link.active %}aria-current="page"{% endif %}>
+                              {{ child_link.title }}
+                            </a>
+                            {%- if child_link.links != blank -%}
+                              <ul class="menu-ul">
+                                {%- for grandchild_link in child_link.links -%}
+                                  <li>
+                                    <a href="{{ grandchild_link.url }}" {% if grandchild_link.active %}aria-current="page"{% endif %}>
+                                      {{ grandchild_link.title }}
+                                    </a>
+                                  </li>
+                                {%- endfor -%}
+                              </ul>
+                            {%- endif -%}
+                          </div>
+                         {%- endfor -%}
+                      {%- endif -%}  
+                     </div>
+                     <div class="right-side">
+                      {% if link.title=='SS16' %}
+                       <img src="{{ section.settings.ss16-image | img_url: 'large' }}" alt="{{ section.settings.ss16-image }}">
+                       {% else %}
+                       <img src="{{ section.settings.shop-image | img_url: 'large' }}" alt="{{ section.settings.shop-image }}">
+                       {% endif %}
+                     </div>
+                </div>
+              </div>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+    </div>
+    <div class="icon-side side">
+      <ul class="flex-view middle right">
+        <li>
+          <div class="search-button">
+            <a>
+              <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20">
+                <path d="M11.2.1C7.9.1 5 2 3.6 5s-.9 6.5 1.2 9l-4 4c-.3.3-.4.7-.3 1 .1.4.4.6.7.7.4.1.8 0 1-.3l4.1-4.1c1.4 1 3.1 1.6 4.9 1.6 4.7 0 8.4-3.8 8.4-8.4 0-4.7-3.8-8.4-8.4-8.4h0zm0 14.7c-3.5 0-6.3-2.8-6.3-6.3s2.8-6.3 6.3-6.3 6.3 2.8 6.3 6.3c0 1.7-.7 3.3-1.8 4.5s-2.8 1.8-4.5 1.8z"></path>
+              </svg>
+            </a>
+          </div>
+        </li>
+          <li>
+            <div class="accounts">
+                <a href="/account">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+                  <path d="M13.7 10.72a6 6 0 1 0-7.4 0A10 10 0 0 0 0 20v1a1 1 0 1 0 2 0v-1a8 8 0 1 1 16 0v1a1 1 0 1 0 2 0v-1a10 10 0 0 0-6.3-9.28zM6 6a4 4 0 1 1 1.172 2.828A4 4 0 0 1 6 6z" fill-rule="evenodd"></path>
+                </svg>
+              </a>
+            </div>
+          </li>
+        <li>
+          <div class="multi-currency">
+            <form method="post" action="/cart/update" id="currency_form" accept-charset="UTF-8" class="shopify-currency-form" enctype="multipart/form-data">
+                  <input type="hidden" name="form_type" value="currency">
+                  <input type="hidden" name="utf8" value="✓">
+                  <input type="hidden" name="return_to" value="/">
+            <select name="currency">
+                   <option>AUD</option>
+                   <option>CAD</option>
+                   <option>EUR</option>
+                   <option>GBP</option>
+                   <option selected="true">INR</option>
+                   <option>PHP</option>
+                   <option>USD</option>
+            </select>
+            </form>
+          </div>
+         </li>
+        <li class="cart-box">
+          <a title="Cart" class="side-cart cart">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20">
+              <path d="M20.8 4h-15L5 .9A1.21 1.21 0 0 0 3.85 0H1a1 1 0 1 0 0 2h2.23L4 5.22 6 15a1.19 1.19 0 0 0 1.17 1h12.66A1.19 1.19 0 0 0 21 14.92l1-9.6A1.2 1.2 0 0 0 20.79 4zM19.1 14H7.83l-1.6-8H19.9l-.8 8z"></path>
+              <circle cx="9.51" cy="18.5" r="1.5"></circle>
+              <circle cx="16.51" cy="18.5" r="1.5"></circle>
+            </svg>
+            <span class="count">2
+           </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div> 
+
+{% schema %}
+{
+  "name": "Image section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "img",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "shop-image",
+      "label": "Shop-image"
+    },
+    {
+      "type": "image_picker",
+      "id": "ss16-image",
+      "label": "SS16-image"
+    }
+  ]
+}
+{% endschema %}
+
+
